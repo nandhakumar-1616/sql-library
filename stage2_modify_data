@@ -1,0 +1,67 @@
+ALTER TABLE members RENAME COLUMN email TO email_address;
+
+ALTER TABLE books
+DROP COLUMN genre;
+
+ALTER TABLE members
+ADD membership_level VARCHAR(15);
+UPDATE members SET membership_level = 'Premium' WHERE member_id = 101;
+UPDATE members SET membership_level = 'Standard' WHERE member_id = 102;
+UPDATE members SET membership_level = 'Premium' WHERE member_id = 103;
+UPDATE members SET membership_level = 'Standard' WHERE member_id = 104;
+
+ALTER TABLE books
+ADD shelf_location VARCHAR(20);
+UPDATE books SET shelf_location = 'A1' WHERE book_id = 201;
+UPDATE books SET shelf_location = 'B2' WHERE book_id = 202;
+UPDATE books SET shelf_location = 'C3' WHERE book_id = 203;
+UPDATE books SET shelf_location = 'B1' WHERE book_id = 204;
+UPDATE books SET shelf_location = 'D4' WHERE book_id = 205;
+
+ALTER TABLE loans
+ADD loan_status VARCHAR(15);
+UPDATE loans
+SET loan_status = CASE
+	WHEN return_date IS NULL THEN 'Checked Out'
+    WHEN return_date IS NOT NULL THEN 'Returned'
+END;
+
+-- fix this update loans loan_status not appearing on table
+
+UPDATE members
+SET last_name = 'Lewis'
+WHERE member_id = 104;
+
+UPDATE books
+SET title = 'Frankenstein; or, The Modern Prometheus'
+WHERE book_id = 205;
+
+UPDATE books
+SET copies_total = 5
+WHERE book_id = 204;
+
+UPDATE books
+SET copies_available = 3
+WHERE book_id = 205;
+
+DELETE FROM loans WHERE loan_id = 302;
+DELETE FROM loans WHERE loan_id = 303;
+DELETE FROM members WHERE member_id = 102;
+DELETE FROM books WHERE book_id = 204;
+
+--checks, does not fully work
+
+DESCRIBE Members; -- works
+DESCRIBE Books;
+DESCRIBE Loans;
+
+SELECT * FROM Members;
+SELECT * FROM Books;
+SELECT * FROM Loans;
+
+SELECT * FROM Members WHERE member_id = 102;
+SELECT * FROM Books WHERE book_id = 204;
+
+SELECT member_id, membership_level FROM Members;
+SELECT book_id, shelf_location FROM Books;
+SELECT loan_id, loan_status FROM Loans;

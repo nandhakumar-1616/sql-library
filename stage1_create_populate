@@ -68,6 +68,8 @@ INSERT INTO loans (loan_id, member_id, book_id, loan_date, due_date, return_date
     (303, 103, 204, '2026-02-08', '2026-02-22', NULL),
     (304, 101, 203, '2026-02-11', '2026-02-25', '2026-02-18');
 
+--all checks work
+
 SELECT * FROM authors;
 SELECT * FROM members;
 SELECT * FROM books;
