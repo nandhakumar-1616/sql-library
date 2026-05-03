@@ -1,0 +1,21 @@
+-- Query 1
+SELECT books.title, authors.last_name
+FROM books
+JOIN authors ON books.author_id = authors.author_id;
+
+-- Query 2
+SELECT COUNT(*)
+FROM loans;
+
+-- Query 3
+SELECT COUNT(DISTINCT member_id)
+FROM loans;
+
+-- Query 4
+SELECT DISTINCT shelf_location
+FROM books;
+
+-- Query 5
+SELECT members.first_name, loans.loan_id
+FROM members
+JOIN loans ON members.member_id = loans.member_id;

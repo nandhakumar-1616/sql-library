@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS books (
     copies_available INTEGER,
     PRIMARY KEY (book_id),
 	FOREIGN KEY (author_id)
-    REFERENCES author (author_id)
+    REFERENCES authors (author_id)
 );
 
 CREATE TABLE IF NOT EXISTS loans (
@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS loans (
     return_date DATE,
     PRIMARY KEY (loan_id),
     FOREIGN KEY (member_id)
-    REFERENCES member1 (member_id),
+    REFERENCES members (member_id),
     FOREIGN KEY (book_id)
-    REFERENCES book (book_id)
+    REFERENCES books (book_id)
 );
 
 INSERT INTO authors (author_id, first_name, last_name, birth_year) VALUES
@@ -68,7 +68,7 @@ INSERT INTO loans (loan_id, member_id, book_id, loan_date, due_date, return_date
     (303, 103, 204, '2026-02-08', '2026-02-22', NULL),
     (304, 101, 203, '2026-02-11', '2026-02-25', '2026-02-18');
 
---all checks work
+-- all checks work
 
 SELECT * FROM authors;
 SELECT * FROM members;

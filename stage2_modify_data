@@ -20,10 +20,11 @@ UPDATE books SET shelf_location = 'D4' WHERE book_id = 205;
 
 ALTER TABLE loans
 ADD loan_status VARCHAR(15);
+
 UPDATE loans
 SET loan_status = CASE
 	WHEN return_date IS NULL THEN 'Checked Out'
-    WHEN return_date IS NOT NULL THEN 'Returned'
+    ELSE 'Returned'
 END;
 
 -- fix this update loans loan_status not appearing on table
@@ -49,7 +50,7 @@ DELETE FROM loans WHERE loan_id = 303;
 DELETE FROM members WHERE member_id = 102;
 DELETE FROM books WHERE book_id = 204;
 
---checks, does not fully work
+-- checks, does not fully work
 
 DESCRIBE Members; -- works
 DESCRIBE Books;
